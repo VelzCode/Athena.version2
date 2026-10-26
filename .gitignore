@@ -1,0 +1,6 @@
+# Ignore all listed files and folders
+## Files
+.env
+
+### Folders
+node_modules
