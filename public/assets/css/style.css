@@ -1,29 +1,21 @@
 :root {
-    /* - Backgrounds */
-    --backdrop: #121110;
-    --panel-gradient: linear-gradient(135deg, #6b5537 0%, #4f3f2c 25%, #2e251b 55%, #6b5537 100%);
-    --column: #2a2520;
-    --panel: #1d1a17;
-    --input: #1a1714;
-
-    /* - Brand */
-    --brand-gradient: linear-gradient(135deg, #6b5537 0%, #43362a 15%, #1d1813 65%, #6b5537 100%);
-    --nav-frame: #ffffffcc;
-
-    /* - Text */
-    --text-color: #e9e4da;
-    --text-muted: #a39b8f;
-    --heading: #c09a6b;
-    --gold: #d4b27e;
-    --input-text: #f0dcb0;
-    --accent: #00f0ff;
-
-    /* - Misc */
-    --backg-color: #080c12;
-    --btn-bor-color: #2c2c2c;
-    --shadow-light: #ffffff55;
-    --shadow-final: #00f0ff55;
-    --shadow-final2: #00f0ff99;
+    --page: #f3f1ee;
+    --surface: #ffffff;
+    --bar: #1b1d22;
+    --bar-text: #f5f5f4;
+    --line: #d8d4ce;
+    --heading: #16181c;
+    --heading-bright: #e6b422;
+    --critical-text: #8d1414;
+    --text: #3a3d44;
+    --muted: #6e6f75;
+    --accent: #1d5f96;
+    --on-accent: #ffffff;
+    --mid-gradient: linear-gradient(115deg, #26282d 0%, #26282d 64%, #f3f1ee 64%, #e7e3dd 100%);
+    --mid-heading: #ffffff;
+    --mid-text: #d4d5d9;
+    --mid-accent: #7fb6e8;
+    --side-pulse: linear-gradient(90deg, #26282d 0%, #26282d 30%, #2d4a6b 50%, #26282d 70%, #26282d 100%);
 }
 
 * {
@@ -34,7 +26,7 @@
 }
 
 body {
-    background: var(--backg-color);
+    background: var(--page);
 }
 
 /* NAVIGATION */
@@ -45,10 +37,9 @@ body {
     align-items: center;
     position: relative;
     width: 100%;
-    padding: 10px 0;
-    background: var(--brand-gradient);
-    border-top: 2px solid var(--nav-frame);
-    border-bottom: 2px solid var(--nav-frame);
+    padding: 20px 0;
+    background: var(--bar);
+    border-bottom: 1px solid var(--on-accent);
 }
 
 .nav-container-brand {
@@ -195,7 +186,6 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    border: 2px solid red;
     border-top: none;
 }
 
@@ -209,17 +199,18 @@ body {
     flex-direction: column;
     width: 100%;
     max-width: 580px;
-    margin-left: 20px;
-    background: var(--panel-gradient);
-    border: 1.5px solid var(--nav-frame);
-    border-top: none;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    background: var(--side-pulse);
+    background-size: 300% 100%;
+    border-right: 1px solid var(--on-accent);
+    animation: pulse 10s ease-in-out infinite alternate;
 }
 
 .szcontent-wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 /* - Side Zone > Clock */
@@ -233,13 +224,13 @@ body {
     gap: 30px;
     margin: 20px auto 20px auto;
     padding: 10px;
-    background: var(--btn-bor-color);
-    border-radius: 30px;
+    background: var(--bar);
+    border-radius: 20px;
     box-shadow:
         0 0 0 1px #000000,
         0 -1px 0 2px #00000080,
         0 1px 0 2px #ffffff25;
-    color: var(--text-color);
+    color: var(--bar-text);
 }
 
 .clock-label {
@@ -253,9 +244,167 @@ body {
     gap: 5px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .side-zone {
+        animation: none;
+    }
+}
+
+/* - Side Zone > Register Form */
+.regform-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    gap: 10px;
+    padding: 20px;
+    background: var(--muted);
+    border: 2px solid var(--line);
+    border-radius: 20px;
+}
+
+.form-container label {
+    color: var(--mid-accent);
+}
+
+.form-container input {
+    padding: 5px 10px;
+    background: var(--page);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+}
+
+.form-container input::placeholder {
+    color: var(--text);
+}
+
+.form-container p {
+    color: var(--critical-text);
+}
+
+.reg-chbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+/* - Side Zone > Login Form */
+.logform-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border: 2px solid red;
+}
+
+.form-container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    gap: 10px;
+    padding: 20px;
+    background: var(--muted);
+    border: 2px solid var(--line);
+    border-radius: 20px;
+}
+
+/*  =============
+    # Middle Zone
+    ============= */
+
+/* - MC > Content */
+.middle-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1336px;
+    background: var(--mid-gradient);
+}
+
+/*  =============
+    # Footer Zone
+    ============= */
+
+/* - FZ > Footer */
+.footer-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    background: var(--bar);
+    border-top: 1px solid var(--on-accent);
+}
+
 /*  ===============
     # Priority Code
     =============== */
+
+/* - PC > Headers */
+.sz-header {
+    font: inherit;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.szlog-header,
+.szreg-header {
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.sz-header {
+    text-align: center;
+    color: var(--heading-bright);
+}
+.szlog-header,
+.szreg-header {
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--mid-text);
+}
+
+/* - PC > Buttons */
+.signupBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: var(--accent);
+    border: 1px solid var(--bar-text);
+    border-radius: 10px;
+    color: var(--mid-text);
+}
+
+/* - PC > Animation */
+@keyframes pulse {
+    from {
+        background-position: 0%; 
+    }
+
+    to {
+        background-position: 100%;
+    }
+}
     
 /* - PC > States.hidden */
 .hidden {
