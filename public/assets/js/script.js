@@ -231,8 +231,8 @@ async function loadMyPosts() {
                         <p>${post.content}</p>
                     </div>
                     <div class="btn-box">
-                        <button class="postBtn" data-id="${post.id}">Edit</button>
-                        <button class="postBtn" data-id="${post.id}">Delete</button>
+                        <button class="postBtn edit-post-btn" data-id="${post.id}">Edit</button>
+                        <button class="postBtn delete-post-btn" data-id="${post.id}">Delete</button>
                     </div>
                 </div>
             `;

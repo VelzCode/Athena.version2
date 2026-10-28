@@ -5,8 +5,10 @@
     --bar-text: #f5f5f4;
     --line: #d8d4ce;
     --heading: #16181c;
+    --heading-soft: #cfe3f5;
     --heading-bright: #e6b422;
     --critical-text: #8d1414;
+    --text-glow: #00f0ff;
     --text: #3a3d44;
     --muted: #6e6f75;
     --accent: #1d5f96;
@@ -15,7 +17,7 @@
     --mid-heading: #ffffff;
     --mid-text: #d4d5d9;
     --mid-accent: #7fb6e8;
-    --side-pulse: linear-gradient(90deg, #26282d 0%, #26282d 30%, #2d4a6b 50%, #26282d 70%, #26282d 100%);
+    --side-pulse: linear-gradient(90deg, #26282d 0%, #26282d 42%, #2a3b4f 50%, #26282d 58%, #26282d 100%);
 }
 
 * {
@@ -210,7 +212,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
 }
 
 /* - Side Zone > Clock */
@@ -285,6 +286,10 @@ body {
     border-radius: 10px;
 }
 
+.form-container input:not([type="checkbox"]) {
+    width: 220px;
+}
+
 .form-container input::placeholder {
     color: var(--text);
 }
@@ -307,8 +312,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 20px;
-    border: 2px solid red;
+    padding: 20px 20px 50px;
 }
 
 .form-container2 {
@@ -323,6 +327,115 @@ body {
     background: var(--muted);
     border: 2px solid var(--line);
     border-radius: 20px;
+}
+
+.form-container2 label {
+    color: var(--mid-accent);
+}
+
+.form-container2 input {
+    padding: 5px 10px;
+    background: var(--page);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+}
+
+.form-container2 input:not([type="checkbox"]) {
+    width: 220px;
+}
+
+.form-container2 input::placeholder {
+    color: var(--text);
+}
+
+.psw {
+    color: var(--critical-text);
+}
+
+.log-chbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+/* - Side Zone > HC */
+.hc-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+    border: 2px solid green;
+}
+
+/* - Side Zone > HC.Welcome Zone */
+.welcome-zone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    gap: 10px;
+    padding: 10px;
+    border: 2px solid red;
+}
+
+.welcome-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.p-wrapper {
+    color: var(--heading-soft);
+}
+
+.p-wrap-span {
+    color: var(--heading-bright);
+}
+
+/* - Side Zone > HC.My Posts */
+.myposts-container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 5px;
+    padding: 10px;
+    border: 2px solid red;
+    list-style-position: inside;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.post-list li::marker,
+.post-list strong {
+    color: var(--mid-text);
+}
+
+.post-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.p-box {
+    color: var(--mid-accent);
+}
+
+.btn-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 /*  =============
@@ -368,7 +481,10 @@ body {
 }
 
 .szlog-header,
-.szreg-header {
+.szreg-header,
+.myposts-header,
+.cposts-header,
+.nl-header {
     font: inherit;
     font-size: 1.1rem;
     font-weight: 400;
@@ -378,21 +494,37 @@ body {
     text-align: center;
     color: var(--heading-bright);
 }
+
+.myposts-header {
+    text-shadow: 0px 0px 2px var(--text-glow);
+    color: var(--mid-text);
+}
+
 .szlog-header,
-.szreg-header {
+.szreg-header,
+.cposts-header,
+.nl-header {
     margin-bottom: 10px;
     text-align: center;
+    text-shadow: 0px 0px 2px var(--text-glow);
     color: var(--mid-text);
 }
 
 /* - PC > Buttons */
 .signupBtn {
+    width: 180px;
     margin-top: 10px;
     padding: 10px 20px;
     background: var(--accent);
     border: 1px solid var(--bar-text);
     border-radius: 10px;
     color: var(--mid-text);
+}
+
+.postBtn {
+    width: 60px;
+    padding: 5px 10px;
+    background: var(--accent);
 }
 
 /* - PC > Animation */
