@@ -243,19 +243,37 @@ async function loadMyPosts() {
         myPostsList.innerHTML = "";
         myPosts.forEach(function (post) {
             const li = document.createElement("li");
-            li.innerHTML =
-            `<div class="post-head">
-                <strong>${post.title}</strong>
-                <div class="btn-box">
-                    <button class="postBtn edit-post-btn" data-id="${post.id}">Edit</button>
-                    <button class="postBtn delete-post-btn" data-id="${post.id}">Delete</button>
-                </div>
-             </div>
-            <div class="post-wrapper">
-                <div class="p-box">
-                    <p>${post.content}</p>
-                </div>
-            </div>`;
+            const div = document.createElement("div");
+            div.className = "post-head";
+            const strong = document.createElement("strong");
+            strong.textContent = post.title;
+            div.appendChild(strong);
+            li.appendChild(div);
+
+            const divBtnBox = document.createElement("div");
+            divBtnBox.className = "btn-box";
+            const editBtn = document.createElement("button");
+            editBtn.className = "postBtn edit-post-btn";
+            editBtn.dataset.id = post.id;
+            editBtn.textContent = "Edit";
+            divBtnBox.appendChild(editBtn);
+            const deleteBtn = document.createElement("button");
+            deleteBtn.className = "postBtn delete-post-btn";
+            deleteBtn.dataset.id = post.id;
+            deleteBtn.textContent = "Delete";
+            divBtnBox.appendChild(deleteBtn);
+            div.appendChild(divBtnBox);
+
+            const divPostWrapper = document.createElement("div");
+            divPostWrapper.className = "post-wrapper";
+            const divPbox = document.createElement("div");
+            divPbox.className = "p-box";
+            const pBoxPgraph = document.createElement("p");
+            pBoxPgraph.textContent = post.content;
+            li.appendChild(divPostWrapper);
+            divPostWrapper.appendChild(divPbox);
+            divPbox.appendChild(pBoxPgraph);
+
             myPostsList.appendChild(li);
         });
     } catch (error) {
@@ -361,11 +379,17 @@ async function loadBrowsePosts(categoryId) {
         browsePostsList.innerHTML = "";
         posts.forEach(function (post) {
             const li = document.createElement("li");
-            li.innerHTML = `
-                <strong>${post.title}</strong>
-                <p>${post.content}</p>
-                <em>by ${post.postedBy}</em>
-            `;
+            const strong = document.createElement("strong");
+            strong.textContent = post.title;
+            li.appendChild(strong);
+
+            const p = document.createElement("p");
+            p.textContent = post.content;
+            li.appendChild(p);
+
+            const em = document.createElement("em");
+            em.textContent = "by " + post.postedBy;
+            li.appendChild(em);
             browsePostsList.appendChild(li);
         });
     } catch (error) {
