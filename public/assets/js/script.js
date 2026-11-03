@@ -24,6 +24,10 @@ async function apiRequest(endpoint, options = {}) {
     const data = await response.json();
 
     if (!response.ok) {
+        if (response.status === 401) {
+            showLoggedOutView();
+            loginMessage.textContent = "Your session has ended, please login again."
+        }
         throw new Error(data.message || data.error || "Something went wrong.");
     }
 
@@ -83,8 +87,25 @@ function showLoggedInView(user) {
     });
     document.getElementById("posts-container").classList.remove("hidden");
     document.getElementById("my-posts-container").classList.remove("hidden");
-    document.getElementById("notes-container").classList.remove("hidden");
+    document.getElementById("cta-point").classList.add("hidden");
+    loadMyPosts();
 }
+
+// SHOWING LOGGED OUT STATE
+function showLoggedOutView() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    document.getElementById("logged-in-view").classList.add("hidden");
+    document.getElementById("register-view").classList.remove("hidden");
+    document.getElementById("login-panel").classList.remove("hidden");
+    document.getElementById("posts-container").classList.add("hidden");
+    document.getElementById("my-posts-container").classList.add("hidden");
+    document.getElementById("cta-point").classList.remove("hidden");
+    document.getElementById("welcome-username").textContent = "";
+
+    resetPostForm();
+};
 
 // CHECKING LOGIN STATUS
 const savedUser = localStorage.getItem("user");
@@ -97,8 +118,7 @@ if (savedUser) {
 const logoutBtn = document.getElementById("logout-btn");
 
 logoutBtn.addEventListener("click", function () {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    showLoggedOutView();
 
     document.getElementById("logged-in-view").classList.add("hidden");
     document.getElementById("register-view").classList.remove("hidden");
@@ -159,6 +179,7 @@ loadCategories();
 
 // CREATE POST
 const createPostForm = document.getElementById("create-post-form");
+const postMessage = document.getElementById("post-message");
 
 createPostForm.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -168,7 +189,7 @@ createPostForm.addEventListener("submit", async function (event) {
     const content = document.getElementById("post-content").value;
 
     if (!categoryId) {
-        alert("Please select a category.");
+        postMessage.textContent = "Please select a category.";
         return;
     }
 
@@ -184,8 +205,6 @@ createPostForm.addEventListener("submit", async function (event) {
                 }),
             });
 
-            editingPostId = null;
-            document.getElementById("submit-postbtn").textContent = "Publish Post";
         } else {
             await apiRequest("/posts", {
                 method: "POST",
@@ -197,19 +216,18 @@ createPostForm.addEventListener("submit", async function (event) {
                 }),
             });
         }
-
-        createPostForm.reset();
+        
+        resetPostForm();
         loadMyPosts();
         loadBrowsePosts();
     } catch (error) {
-        alert("Could not save post: " + error.message);
+        postMessage.textContent = ("Could not save post: " + error.message);
     }
 });
 
 // MY POSTS
 async function loadMyPosts() {
     const myPostsList = document.getElementById("my-posts-lists");
-    myPostsList.innerHTML = "";
 
     const currentUser = JSON.parse(localStorage.getItem("user"));
     if (!currentUser) {
@@ -222,20 +240,22 @@ async function loadMyPosts() {
             return post.userId === currentUser.id;
         });
 
+        myPostsList.innerHTML = "";
         myPosts.forEach(function (post) {
             const li = document.createElement("li");
-            li.innerHTML = `
+            li.innerHTML =
+            `<div class="post-head">
                 <strong>${post.title}</strong>
-                <div class="post-wrapper">
-                    <div class="p-box">
-                        <p>${post.content}</p>
-                    </div>
-                    <div class="btn-box">
-                        <button class="postBtn edit-post-btn" data-id="${post.id}">Edit</button>
-                        <button class="postBtn delete-post-btn" data-id="${post.id}">Delete</button>
-                    </div>
+                <div class="btn-box">
+                    <button class="postBtn edit-post-btn" data-id="${post.id}">Edit</button>
+                    <button class="postBtn delete-post-btn" data-id="${post.id}">Delete</button>
                 </div>
-            `;
+             </div>
+            <div class="post-wrapper">
+                <div class="p-box">
+                    <p>${post.content}</p>
+                </div>
+            </div>`;
             myPostsList.appendChild(li);
         });
     } catch (error) {
@@ -247,6 +267,7 @@ loadMyPosts();
 
 // DELETE POST
 const myPostList = document.getElementById("my-posts-lists");
+const deleteMessage = document.getElementById("delete-message");
 
 myPostList.addEventListener("click", async function (event) {
     if (!event.target.classList.contains("delete-post-btn")) {
@@ -259,6 +280,7 @@ myPostList.addEventListener("click", async function (event) {
     if (!confirmed) {
         return;
     }
+    deleteMessage.textContent = "";
 
     try {
         await apiRequest("/posts/" + postId, {
@@ -267,13 +289,23 @@ myPostList.addEventListener("click", async function (event) {
         loadMyPosts();
         loadBrowsePosts();
     } catch (error) {
-        alert("Could not delete post: " + error.message);
+        deleteMessage.textContent = ("Could not delete post: " + error.message);
     }
 });
 
 // EDIT POST
-let editingPostId = null;
+function resetPostForm () {
+    createPostForm.reset();
+    editingPostId = null;
+    document.getElementById("submit-postbtn").textContent = "Publish Post";
+    document.getElementById("post-form-heading").textContent = "Create a Post";
+    document.getElementById("cancel-edit-btn").classList.add("hidden");
+    postMessage.textContent = "";
+}
 
+let editingPostId = null;
+const cancelBtn = document.getElementById("cancel-edit-btn");
+cancelBtn.addEventListener("click", resetPostForm);
 myPostList.addEventListener("click", function (event) {
     if (!event.target.classList.contains("edit-post-btn")) {
         return;
@@ -288,6 +320,9 @@ myPostList.addEventListener("click", function (event) {
 
         editingPostId = postId;
         document.getElementById("submit-postbtn").textContent = "Update Post";
+        document.getElementById("post-form-heading").textContent = "Edit Post";
+        document.getElementById("cancel-edit-btn").classList.remove("hidden");
+        createPostForm.scrollIntoView();
     });
 });
 
@@ -313,7 +348,6 @@ loadBrowseCategories();
 
 async function loadBrowsePosts(categoryId) {
     const browsePostsList = document.getElementById("browse-posts-list");
-    browsePostsList.innerHTML = "";
 
     try {
         let posts;
@@ -324,6 +358,7 @@ async function loadBrowsePosts(categoryId) {
             posts = await apiRequest("/posts");
         }
 
+        browsePostsList.innerHTML = "";
         posts.forEach(function (post) {
             const li = document.createElement("li");
             li.innerHTML = `
@@ -344,65 +379,4 @@ const browseCategorySelect = document.getElementById("browse-category-select");
 
 browseCategorySelect.addEventListener("change", function () {
     loadBrowsePosts(browseCategorySelect.value);
-});
-
-// NOTES
-function getNotes() {
-    const notesJson = localStorage.getItem("notes");
-    return notesJson ? JSON.parse(notesJson) : [];
-}
-
-function saveNotes(notes) {
-    localStorage.setItem("notes", JSON.stringify(notes));
-}
-
-function renderNotes() {
-    const notesList = document.getElementById("notes-list");
-    notesList.innerHTML = "";
-
-    const notes = getNotes();
-
-    notes.forEach(function (note, index) {
-        const li = document.createElement("li");
-        li.innerHTML = `
-            <span>${note}</span>
-            <button class="delete-note-btn" data-index="${index}">Delete</button>
-            `;
-        notesList.appendChild(li);
-    });
-}
-
-renderNotes();
-
-const addNoteBtn = document.getElementById("add-note-btn");
-const noteInput = document.getElementById("note-input");
-
-addNoteBtn.addEventListener("click", function () {
-    const text = noteInput.value.trim();
-
-    if (!text) {
-        return;
-    }
-
-    const notes = getNotes();
-    notes.push(text);
-    saveNotes(notes);
-
-    noteInput.value = "";
-    renderNotes();
-});
-
-const notesList = document.getElementById("notes-list");
-
-notesList.addEventListener("click", function (event) {
-    if (!event.target.classList.contains("delete-note-btn")) {
-        return;
-    }
-
-    const index = parseInt(event.target.dataset.index);
-    const notes = getNotes();
-
-    notes.splice(index, 1);
-    saveNotes(notes);
-    renderNotes();
 });

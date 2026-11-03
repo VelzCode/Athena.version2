@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Athena MySQL Project</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/images/as1.svg">
     <link href="./assets/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -20,10 +21,8 @@
             </div>
             <div class="nav-container-main">
                 <div class="link-box">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Content</a>
-                    <a href="#">Contact</a>
+                    <a href="index.html" aria-current="page">Home</a>
+                    <a href="contact.html">Contact</a>
                 </div>
             </div>
             <div class="nav-container-search">
@@ -89,20 +88,21 @@
                             <div class="welcome-box">
                                 <p class="p-wrapper">Welcome, <span class="p-wrap-span" id="welcome-username"></span></p>
                             </div>
-                            <button type="button" class="signupBtn" id="logout-btn">Logout</button>
+                            <button type="button" class="welcomeBtn" id="logout-btn">Logout</button>
                         </div>
                         <!-- - My Posts -->
-                        <hr class="hr-user-area hidden">
                         <div class="myposts-container hidden" id="my-posts-container">
                             <h2 class="myposts-header">My Posts</h2>
                             <ol class="post-list" id="my-posts-lists">
+                                <li class="lposts">Loading posts...</li>
                                 <!-- Posts Here -->
                             </ol>
+                            <p id="delete-message"></p>
                         </div>
-                        <hr class="hr-user-area hidden">
+                        <hr class="myposts-divider">
                         <!-- - Create Posts -->
                         <div class="cposts-zone hidden" id="posts-container">
-                            <h2 class="cposts-header">Create a Post</h2>
+                            <h2 class="cposts-header" id="post-form-heading">Create a Post</h2>
                             <form class="post-form" id="create-post-form">
                                 <label for="post-title">Title:</label>
                                     <input type="text" id="post-title" name="title" placeholder="Enter a Title.." required>
@@ -111,21 +111,13 @@
                                         <option value="">Select a category</option>
                                     </select>
                                 <label for="post-content">Content:</label>
-                                    <textarea id="post-content" name="content" rows="6" placeholder="Write your Post.."></textarea>
-                                    <button type="submit" class="signupBtn" id="submit-postbtn">Publish Post</button>
+                                    <textarea id="post-content" name="content" rows="10" placeholder="Write your Post.."></textarea>
+                                    <div class="post-buttons">
+                                        <button type="submit" class="cpost-Btn" id="submit-postbtn">Publish Post</button>
+                                        <button type="button" id="cancel-edit-btn" class="cpost-Btn hidden">Cancel</button>
+                                    </div>
+                                    <p id="post-message"></p>
                             </form>
-                        </div>
-                        <hr class="hr-user-area hidden">
-                        <!-- - Note List -->
-                        <div class="notes-zone hidden" id="notes-container">
-                            <h2 class="nl-header">Note List</h2>
-                            <div class="note-list">
-                                <input type="text" id="note-input" placeholder="Note here...">
-                                <button type="button" class="postBtn noteBtn" id="add-note-btn">Add Note</button>
-                            </div>
-                            <ul class="note-list-ul" id="notes-list">
-                                <!-- Notes Here -->
-                            </ul>
                         </div>
                     </div>
                     <!-- - Side Zone > User Area > Login Form -->
@@ -148,34 +140,57 @@
             </div>
             <div class="middle-wrapper">
                 <div class="content-box">
-                    <h1 class="cb-header">Welcome to Athena Systems</h1>
-                    <div class="cb-pbox">
-                        <p class="cb-pbox-p">Deploying a new feature of our company's infrastructure, offering our customers a way to list their tasks
-                        and save notes for the employees to read, so we can listen to your views</p>
-                        <div class="cblist-box"> 
-                            <p>Here are two new sections for you to enjoy:</p>
-                            <ul class="cb-list">
-                                <li>Post Creation</li>
-                                <li>Save Notes</li>
-                            </ul>
+                    <div class="cb-wrapper">
+                        <h3 class="cbmini-header">Interactive Portal</h3>
+                        <h2 class="cb-header">Welcome to Athena Systems</h2>
+                        <div class="cb-pbox">
+                            <p class="cb-pbox-p">Deploying a new feature of our company's infrastructure, offering our customers a way to create their own posts and show them in their User area.</p>
                         </div>
-                    </div>
-                    <div class="cbpost-container">
-                        <div class="postcontent-box" id="browse-posts-container">
-                            <h2 class="pc-header">Browse Posts by Category</h2>
-                            <select id="browse-category-select">
-                                <option value="">All categories</option>
-                            </select>
-                            <ul class="list-box" id="browse-posts-list">
-                                <!-- Filtered posts will be inserted here -->
+                        <div class="cblist-box"> 
+                            <p class="cblist-p">Here is the new feature for you to enjoy:</p>
+                            <ul class="cb-list">
+                                <li class="li-1">
+                                    <h3 class="pc-header">Post Creation</h3>
+                                    <p>Registered users can create their own posts which will be displayed in the middle section.</p>
+                                </li>
+                                <li class="li-2">
+                                    <h3 class="sn-header">View Posts</h3>
+                                    <p>Users have the option to view,edit, and delete their posts in their User Area while on the Portal.</p>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+                <div class="cbpost-container">
+                    <div class="postcontent-box" id="browse-posts-container">
+                        <div class="browse-row">
+                            <h2 class="pc-header">Browse Posts by Category</h2>
+                            <select id="browse-category-select">
+                                <option value="">All categories</option>
+                            </select>
+                        </div>
+                        <ul class="list-box" id="browse-posts-list">
+                            <li class="lposts">Loading posts...</li>
+                            <!-- Filtered posts will be inserted here -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="cta-wrapper" id="cta-point">
+                    <a href="#register-email" class="cta-arrow">&larr;</a><span class="cta-group">New to the portal? </span><span class="cta-text">Create an Account </span>
+                </div>
             </div>
         </section>
         <footer class="footer-wrapper">
-            <div class="footer-zone">Placeholder</div>
+           <div class="footer-zone">
+                <div class="footer-box">
+                    <div class="link-group">
+                        <a href="https://www.linkedin.com/in/jay-dewhurst/" target="_blank" class="li-group"><img src="./assets/images/trans-li.png">LinkedIn<span class="li-dot"></span></a>
+                        <a href="https://github.com/VelzCode" target="_blank" class="gh-group"><img src="./assets/images/github_padded.png">GitHub<span class="gh-dot"></span></a>
+                        <a href="mailto:jason.m.dewhurst@protonmail.com" alt=""  class="em-group"><img src="./assets/images/email.png"><span class="text">Email</span></a>
+                    </div>
+                    <p class="footer-text"><span class="copyright">&copy;2026 Athena Systems</span><span class="dot"></span><span class="author">Built by Jason Dewhurst</span></p>
+                </div>
+            </div>
         </footer>
     </main>
     <script src="./assets/js/script.js"></script>

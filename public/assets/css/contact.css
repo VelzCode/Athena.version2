@@ -1,0 +1,307 @@
+:root {
+    /* - RT > Backgrounds */
+    --side-pulse2: linear-gradient(90deg, #26282d 0%, #26282d 42%, #26282d 58%, #26282d 100%);
+
+    /* - RT > Checkbox */
+    --enquiry: #b79cf0;
+    --services: #ff8a65;
+    --collab: #f2b632;
+    --volunteer: #7fd68a;
+    --neutral-outline: #e8eaee;
+
+    /* - RT > Text */
+    --muted-white: #bebebe;
+}
+
+/*  ===========
+    # Universal
+    =========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+}
+
+/*  ==============
+    # Main Content
+    ============== */
+
+/* - MC > Form Wrapper */
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+    background: var(--side-pulse2);
+    border: 2px solid yellow;
+}
+
+/* - MC > Intro Elements */
+.pg-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 800px;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.intro-p {
+    font-size: 1rem;
+    color: var(--mid-text);
+}
+
+.info-p {
+    font-size: 0.9rem;
+    color: var(--muted-white);
+}
+
+.em-span {
+    color: var(--divider-line);
+}
+
+/* - MC > Form Elements */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    gap: 20px;
+    padding: 20px 0;
+    background: var(--bar);
+    border: 1.5px solid var(--border-line);
+    border-radius: 20px;
+}
+
+.contact-form label {
+    color: var(--mid-accent);
+}
+
+.contact-form input {
+    padding: 5px 10px;
+    background: var(--page);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+}
+
+.contact-form input:focus {
+    background: var(--bar);
+    outline: 2px solid var(--border-line);
+    color: var(--mid-text);
+}
+
+.contact-form input:focus::placeholder {
+    color: var(--mid-text);
+}
+
+.contact-form input:not([type="checkbox"]) {
+    width: 220px;
+}
+
+.contact-form input::placeholder {
+    color: var(--text);
+}
+
+.contact-form textarea {
+    width: 100%;
+    max-width: 300px;
+    padding: 5px 10px;
+    background: var(--page);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    resize: none;
+}
+
+.contact-form textarea:focus {
+    background: var(--bar);
+    outline: 2px solid var(--border-line);
+    color: var(--mid-text);
+}
+
+.contact-form textarea:focus::placeholder {
+    color: var(--mid-text);
+}
+
+.contact-form textarea::placeholder {
+    color: var(--text);
+}
+
+/* - MC > Form Checkbox wrapper & Elements */
+.cbox-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px;
+}
+
+.label-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.cbox-wrapper .label-wrapper  {
+    color: var(--mid-text);
+}
+
+.cbox-wrapper label:nth-of-type(1):has(input:checked) {
+    color: var(--enquiry);
+    accent-color: var(--enquiry);
+}
+
+.cbox-wrapper label:nth-of-type(2):has(input:checked) {
+    color: var(--services);
+    accent-color: var(--services);
+}
+
+.cbox-wrapper label:nth-of-type(3):has(input:checked) {
+    color: var(--collab);
+    accent-color: var(--collab);
+}
+
+.cbox-wrapper label:nth-of-type(4):has(input:checked) {
+    color: var(--volunteer);
+    accent-color: var(--volunteer);
+}
+
+.label-wrapper input:not(:checked) {
+    opacity: 0.8;
+}
+
+.label-wrapper input[type="checkbox"] {
+    outline: none;
+}
+
+.label-wrapper input[type="checkbox"]:focus-visible {
+    outline: 1.5px solid var(--neutral-outline);
+    outline-offset: 1px;
+}
+
+/*  ========
+    # Footer
+    ======== */
+
+.footer-zone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.li-group,
+.gh-group,
+.em-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: var(--mid-text);
+    text-shadow: 0px 0px 2px var(--text-glow);
+}
+
+.em-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-right: 15px;
+}
+
+.li-group img {
+    width: 50px;
+    height: 50px;
+}
+
+.gh-group img {
+    width: 30px;
+    height: 30px;
+    margin: 0 15px;
+}
+
+.em-group img {
+    width: 30px;
+    height: 26px;
+}
+
+.li-dot,
+.gh-dot {
+    display: inline-block;
+    align-items: center;
+    width: 4px;
+    height: 4px;
+    margin-left: 20px;
+    background-color: var(--bar-text);
+    border-radius: 50%;
+}
+
+.gh-dot {
+    margin-right: 20px;
+}
+
+.copyright {
+    color: var(--heading-bright);
+}
+
+.author {
+    color: var(--mid-text);
+    text-shadow: 0px 0px 2px var(--text-glow);
+}
+
+/*  ===============
+    # Priority Code
+    =============== */
+
+/* - PC > Headers */
+.contact-header {
+    flex-basis: 100%;
+    text-align: center;
+    color: var(--mid-text);
+    text-shadow: 0px 0px 2px var(--text-glow);
+}
+
+/* - PC > Buttons */
+.cformBtn {
+    padding: 8px 15px;
+    background: var(--accent);
+    border: 1px solid var(--muted);
+    border-radius: 10px;
+    box-shadow: 3px 2.5px 1px 1px var(--heading);
+    color: var(--mid-text);
+    text-align: center;
+    cursor: pointer;
+}
+
+/* - PC > Misc */
+.dot {
+    display: inline-block;
+    align-items: center;
+    width: 4px;
+    height: 4px;
+    margin: 0 10px;
+    transform: translateY(-3px);
+    background-color: var(--bar-text);
+    border-radius: 50%;
+}
