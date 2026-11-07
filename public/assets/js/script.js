@@ -88,6 +88,9 @@ function showLoggedInView(user) {
     document.getElementById("posts-container").classList.remove("hidden");
     document.getElementById("my-posts-container").classList.remove("hidden");
     document.getElementById("cta-point").classList.add("hidden");
+    document.getElementById("mp-divider").classList.remove("hidden");
+    document.getElementById("register-form").reset();
+    document.getElementById("login-form").reset();
     loadMyPosts();
 }
 
@@ -102,6 +105,7 @@ function showLoggedOutView() {
     document.getElementById("posts-container").classList.add("hidden");
     document.getElementById("my-posts-container").classList.add("hidden");
     document.getElementById("cta-point").classList.remove("hidden");
+    document.getElementById("mp-divider").classList.add("hidden");
     document.getElementById("welcome-username").textContent = "";
 
     resetPostForm();
@@ -132,6 +136,12 @@ logoutBtn.addEventListener("click", function () {
 // LOGIN
 const loginForm = document.getElementById("login-form");
 const loginMessage = document.getElementById("login-message");
+const demoBtn = document.getElementById("demo-account");
+
+demoBtn.addEventListener("click", function () {
+    document.getElementById("login-username").value = "demo@athena.com";
+    document.getElementById("login-password").value = "demodemo";
+});
 
 loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();

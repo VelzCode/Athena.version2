@@ -5,5 +5,13 @@
     "postedBy": "Admin",
     "createdOn": "2026-05-09T12:00:00Z",
     "categoryId": 1
+  },
+
+  {
+    "title": "Creation of accounts",
+    "content": "We have introduced an important demo account for the website: \n\n• Demo account \n\n Please use the account located underneath the login zone to login for your convenience.",
+    "postedBy": "Admin",
+    "createdOn": "2025-11-06T12:00:00Z",
+    "categoryId": 2
   }
 ]

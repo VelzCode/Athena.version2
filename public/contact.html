@@ -48,7 +48,7 @@
                         <p class="intro-p">I hope you liked and enjoyed visiting my website, if you would like to contact me for any reason, you can use this contact form I made or you can contact me directly using my LinkedIn/Email found within the footer section located below the contact form.</p>
                         <p class="info-p">A quick note: this is a fictional site, built during my <span class="em-span"><em>Level 4 BCS Accredited Web Development</em></span> bootcamp. When contacting me, tick the reasons that apply. Each one lights up in its own colour when selected, so give it a try!</p>
                     </div>
-                    <form class="contact-form">
+                    <form class="contact-form" id="c-form" action="https://formspree.io/f/xgaaqgl" method="post">
                         <label for="fname">First Name</label>
                         <input type="text" name="fname" placeholder="First name..." required>
                         <label for="lname">Last Name</label>
@@ -57,26 +57,28 @@
                         <input type="email" name="email" placeholder="Email here..." required>
                         <label for="reason">Contact Reason:</label>
                         <div class="cbox-wrapper">
-                            <label for="enquiry" class="label-wrapper">
-                                <input type="checkbox" name="cbox" value="yes" required>
+                            <label for="enquiry" class="label-wrapper" id="label">
+                                <input type="checkbox" name="cbox" value="yes">
                                 <span>Enquiry</span>
                             </label>
                             <label for="services" class="label-wrapper">
-                                <input type="checkbox" name="cbox" value="yes" required>
+                                <input type="checkbox" name="cbox" value="yes">
                                 <span>Services</span>
                             </label>
                             <label for="collab" class="label-wrapper">
-                                <input type="checkbox" name="cbox" value="yes" required>
+                                <input type="checkbox" name="cbox" value="yes">
                                 <span>Collaborating</span>
                             </label>
                             <label for="volunteer" class="label-wrapper">
-                                <input type="checkbox" name="cbox" value="yes" required>
+                                <input type="checkbox" name="cbox" value="yes">
                                 <span>Volunteering</span>
                             </label>
+                            <p class="cbmessage" id="reason-message"></p>
                         </div>
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="10" placeholder="Message..." required></textarea>
-                        <button type="submit" class="cformBtn"  >Send your Message</button>
+                        <button type="submit" class="cformBtn" id="c-formBtn">Send your Message</button>
+
                     </form>
                 </div>
             </section>
@@ -94,5 +96,6 @@
             </footer>
         </main>
         <script src="./assets/js/hamburger.js"></script>
+        <script src="./assets/js/contact.js"></script>
     </body>
 </html>

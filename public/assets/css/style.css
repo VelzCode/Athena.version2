@@ -17,7 +17,7 @@
     --accent: #1d5f96;
     --on-accent: #ffffff;
     --btn-teal: #1f5a5c;
-    --mid-gradient: linear-gradient(115deg, #26282d 0%, #26282d 64%, #f3f1ee 64%, #e7e3dd 100%);
+    --mid-gradient: linear-gradient(115deg, #26282d 0%, #26282d 66%, #f3f1ee 66%, #e7e3dd 100%);
     --mid-heading: #ffffff;
     --mid-text: #d4d5d9;
     --mid-accent: #7fb6e8;
@@ -272,6 +272,46 @@ main {
     align-items: center;
 }
 
+.accounts-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.accounts-wrapper h3 {
+    font-weight: 400;
+    color: var(--mid-text);
+    text-shadow: 0px 0px 2px var(--text-glow);
+}
+
+.accounts-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    list-style: none;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.accounts-area span {
+    color: var(--mid-accent);
+}
+
+.account-info button {
+    color: var(--heading-bright);
+}
+
 /* - Side Zone > Clock */
 .nav-clock {
     display: flex;
@@ -380,7 +420,7 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 20px 20px 50px;
+    padding: 20px 20px 0;
 }
 
 .form-container2 {
@@ -801,6 +841,8 @@ main {
     font-size: 0.9rem;
     font-weight: 400;
     color: var(--mid-text);
+    white-space: pre-line;
+    line-height: 0.8rem;
 }
 
 .list-box em {
@@ -835,14 +877,16 @@ main {
 }
 
 .cta-arrow {
-    margin-right: 10px;
+    margin: 0 18px 5px 0;
+    font-size: 1.6rem;
+    -webkit-text-stroke: 1px;
     text-decoration: none;
     color: var(--heading-bright);
 }
 
 .cta-arrow:hover {
     display: inline-block;
-    transform: translateX(-6px);
+    transform: translateX(-4px);
 }
 
 /*  =============
@@ -1073,6 +1117,13 @@ main {
     box-shadow: 3px 2.5px 1px 1px var(--heading);
     color: var(--mid-text);
     text-align: center;
+    cursor: pointer;
+}
+
+.demoBtn {
+    padding: 5px 10px;
+    background: var(--btn-teal);
+    color: var(--mid-text);
     cursor: pointer;
 }
 
