@@ -13,19 +13,8 @@
     --muted-white: #bebebe;
 }
 
-/*  ===========
-    # Universal
-    =========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    font-weight: 400;
-}
-
 /*  ==============
-    # Main Content
+    # MAIN CONTENT
     ============== */
 
 /* - MC > Form Wrapper */
@@ -38,7 +27,6 @@
     gap: 20px;
     padding: 20px;
     background: var(--side-pulse2);
-    border: 2px solid yellow;
 }
 
 /* - MC > Intro Elements */
@@ -74,7 +62,7 @@
     align-items: center;
     width: 100%;
     max-width: 600px;
-    gap: 20px;
+    gap: 15px;
     padding: 20px 0;
     background: var(--bar);
     border: 1.5px solid var(--border-line);
@@ -187,89 +175,6 @@
     outline-offset: 1px;
 }
 
-/*  ========
-    # Footer
-    ======== */
-
-.footer-zone {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.footer-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.link-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.li-group,
-.gh-group,
-.em-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-decoration: none;
-    color: var(--mid-text);
-    text-shadow: 0px 0px 2px var(--text-glow);
-}
-
-.em-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    margin-right: 15px;
-}
-
-.li-group img {
-    width: 50px;
-    height: 50px;
-}
-
-.gh-group img {
-    width: 30px;
-    height: 30px;
-    margin: 0 15px;
-}
-
-.em-group img {
-    width: 30px;
-    height: 26px;
-}
-
-.li-dot,
-.gh-dot {
-    display: inline-block;
-    align-items: center;
-    width: 4px;
-    height: 4px;
-    margin-left: 20px;
-    background-color: var(--bar-text);
-    border-radius: 50%;
-}
-
-.gh-dot {
-    margin-right: 20px;
-}
-
-.copyright {
-    color: var(--heading-bright);
-}
-
-.author {
-    color: var(--mid-text);
-    text-shadow: 0px 0px 2px var(--text-glow);
-}
-
 /*  ===============
     # Priority Code
     =============== */
@@ -304,4 +209,33 @@
     transform: translateY(-3px);
     background-color: var(--bar-text);
     border-radius: 50%;
+}
+
+.nav-dot {
+    display: inline-block;
+    align-items: center;
+    width: 7px;
+    height: 7px;
+    background-color: var(--heading-bright);
+    transform: translateY(-1px);
+}
+
+.cbmessage {
+    margin-top: -10px;
+    color: var(--services);
+}
+
+.submit-message {
+    color: var(--services);
+}
+
+.success {
+    color: var(--volunteer);
+}
+
+/* - PC > Media */
+@media (max-width: 400px) {
+    .contact-form {
+        padding: 20px;
+    }
 }

@@ -89,8 +89,10 @@ function showLoggedInView(user) {
     document.getElementById("my-posts-container").classList.remove("hidden");
     document.getElementById("cta-point").classList.add("hidden");
     document.getElementById("mp-divider").classList.remove("hidden");
+    document.getElementById("accounts-area").classList.add("hidden");
     document.getElementById("register-form").reset();
     document.getElementById("login-form").reset();
+    resetPostForm();
     loadMyPosts();
 }
 
@@ -106,17 +108,11 @@ function showLoggedOutView() {
     document.getElementById("my-posts-container").classList.add("hidden");
     document.getElementById("cta-point").classList.remove("hidden");
     document.getElementById("mp-divider").classList.add("hidden");
+    document.getElementById("accounts-area").classList.remove("hidden");
     document.getElementById("welcome-username").textContent = "";
 
     resetPostForm();
 };
-
-// CHECKING LOGIN STATUS
-const savedUser = localStorage.getItem("user");
-
-if (savedUser) {
-    showLoggedInView(JSON.parse(savedUser));
-}
 
 // LOGOUT
 const logoutBtn = document.getElementById("logout-btn");
@@ -414,3 +410,10 @@ const browseCategorySelect = document.getElementById("browse-category-select");
 browseCategorySelect.addEventListener("change", function () {
     loadBrowsePosts(browseCategorySelect.value);
 });
+
+// CHECKING LOGIN STATUS
+const savedUser = localStorage.getItem("user");
+
+if (savedUser) {
+    showLoggedInView(JSON.parse(savedUser));
+}

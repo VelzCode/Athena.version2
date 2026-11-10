@@ -13,11 +13,6 @@
         <main>
             <!-- # NAVIGATION -->
             <nav class="nav-wrapper">
-                <button type="button" class="menu-btn" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
                 <div class="nav-container-brand">
                     <img src="./assets/images/as1.svg" alt="Profile Badge Image"><span>Athena Systems</span>
                 </div>
@@ -25,19 +20,40 @@
                     <div class="link-box">
                         <a href="index.html">Home</a>
                         <a href="contact.html" aria-current="page">Contact</a>
+                        <span class="dot nav-dot" aria-hidden="true"></span>
+                        <a href="https://velzcode.github.io/Portfolio.Main/" target="_blank">Portfolio</a>
+                        <a href="https://github.com/VelzCode/Athena.version2" target="_blank">Source Code</a>
                     </div>
                 </div>
-                <div class="nav-container-search">
-                    <form class="search-wrapper">
-                        <input class="search-input" type="search" placeholder="Search...">
-                        <button type="submit" class="search-button" aria-label="Search">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                                stroke-linecap="round">
-                                <circle cx="11" cy="11" r="7"></circle>
-                                <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
-                            </svg>
-                        </button>
-                    </form>
+                <div class="menu-box">
+                    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false">
+                        <span class="menu-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="menu-text">Menu</span>
+                    </button>
+                </div>
+                <div class="nav-clock-wrapper">
+                    <div class="nav-clock">
+                        <div class="clock-label">
+                            <p class="label-cl"><span>Current Time</span></p>
+                        </div>
+                        <div class="clock-container">
+                            <div class="clock-unit">
+                                <span class="clock-hours"></span>
+                            </div>
+                            <span class="clock-seperator">:</span>
+                            <div class="clock-unit">
+                                <span class="clock-minutes"></span>
+                            </div>
+                            <span class="clock-seperator">:</span>
+                            <div class="clock-unit">
+                                <span class="clock-seconds"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </nav>
             <!-- # CONTENT EXCLUDING NAVIGATION -->
@@ -48,37 +64,37 @@
                         <p class="intro-p">I hope you liked and enjoyed visiting my website, if you would like to contact me for any reason, you can use this contact form I made or you can contact me directly using my LinkedIn/Email found within the footer section located below the contact form.</p>
                         <p class="info-p">A quick note: this is a fictional site, built during my <span class="em-span"><em>Level 4 BCS Accredited Web Development</em></span> bootcamp. When contacting me, tick the reasons that apply. Each one lights up in its own colour when selected, so give it a try!</p>
                     </div>
-                    <form class="contact-form" id="c-form" action="https://formspree.io/f/xgaaqgl" method="post">
+                    <form class="contact-form" id="c-form" action="https://formspree.io/f/xgaaqglz" method="post">
                         <label for="fname">First Name</label>
-                        <input type="text" name="fname" placeholder="First name..." required>
+                        <input type="text" id="fname" name="fname" placeholder="First name..." required>
                         <label for="lname">Last Name</label>
-                        <input type="text" name="lname" placeholder="Last name..." required>
+                        <input type="text" id="lname" name="lname" placeholder="Last name..." required>
                         <label for="email">Email</label>
-                        <input type="email" name="email" placeholder="Email here..." required>
+                        <input type="email" id="email" name="email" placeholder="Email here..." required>
                         <label for="reason">Contact Reason:</label>
                         <div class="cbox-wrapper">
                             <label for="enquiry" class="label-wrapper" id="label">
-                                <input type="checkbox" name="cbox" value="yes">
+                                <input type="checkbox" id="enquiry" name="cbox" value="enquiry">
                                 <span>Enquiry</span>
                             </label>
                             <label for="services" class="label-wrapper">
-                                <input type="checkbox" name="cbox" value="yes">
+                                <input type="checkbox" id="services" name="cbox" value="services">
                                 <span>Services</span>
                             </label>
                             <label for="collab" class="label-wrapper">
-                                <input type="checkbox" name="cbox" value="yes">
+                                <input type="checkbox" id="collab" name="cbox" value="collab">
                                 <span>Collaborating</span>
                             </label>
                             <label for="volunteer" class="label-wrapper">
-                                <input type="checkbox" name="cbox" value="yes">
+                                <input type="checkbox" id="volunteer" name="cbox" value="volunteer">
                                 <span>Volunteering</span>
                             </label>
-                            <p class="cbmessage" id="reason-message"></p>
                         </div>
+                        <p class="cbmessage" id="reason-message"></p>
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="10" placeholder="Message..." required></textarea>
                         <button type="submit" class="cformBtn" id="c-formBtn">Send your Message</button>
-
+                        <p class="submit-message" id="success-message"></p>
                     </form>
                 </div>
             </section>
@@ -96,6 +112,7 @@
             </footer>
         </main>
         <script src="./assets/js/hamburger.js"></script>
+        <script src="./assets/js/clock.js"></script>
         <script src="./assets/js/contact.js"></script>
     </body>
 </html>

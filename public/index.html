@@ -10,12 +10,7 @@
 <body>
     <main>
         <!-- # NAVIGATION -->
-        <nav class="nav-wrapper">
-            <button type="button" class="menu-btn" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+       <nav class="nav-wrapper">
             <div class="nav-container-brand">
                 <img src="./assets/images/as1.svg" alt="Profile Badge Image"><span>Athena Systems</span>
             </div>
@@ -23,26 +18,22 @@
                 <div class="link-box">
                     <a href="index.html" aria-current="page">Home</a>
                     <a href="contact.html">Contact</a>
+                    <span class="dot nav-dot" aria-hidden="true"></span>
+                    <a href="https://velzcode.github.io/Portfolio.Main/" target="_blank">Portfolio</a>
+                    <a href="https://github.com/VelzCode/Athena.version2" target="_blank">Source Code</a>
                 </div>
             </div>
-            <div class="nav-container-search">
-                <form class="search-wrapper">
-                    <input class="search-input" type="search" placeholder="Search...">
-                    <button type="submit" class="search-button" aria-label="Search">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                            stroke-linecap="round">
-                            <circle cx="11" cy="11" r="7"></circle>
-                            <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
-                        </svg>
-                    </button>
-                </form>
+            <div class="menu-box">
+                <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false">
+                    <span class="menu-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <span class="menu-text">Menu</span>
+                </button>
             </div>
-        </nav>
-        <!-- # CONTENT EXCLUDING NAVIGATION -->
-        <section class="main-wrapper">
-            <!-- - Side Zone > User Area -->
-            <div class="side-zone">
-                <!-- - Side Zone > User Area > Clock -->
+            <div class="nav-clock-wrapper">
                 <div class="nav-clock">
                     <div class="clock-label">
                         <p class="label-cl"><span>Current Time</span></p>
@@ -61,6 +52,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </nav>
+        <!-- # CONTENT EXCLUDING NAVIGATION -->
+        <section class="main-wrapper">
+            <!-- - Side Zone > User Area -->
+            <div class="side-zone">
                 <!-- - Side Zone > User Area > Register Form -->
                 <h2 class="sz-header">User Panel</h2>
                 <div class="szcontent-wrapper">
@@ -134,7 +131,7 @@
                             <p id="login-message"></p>
                         </form>
                     </div>
-                    <div class="accounts-wrapper">
+                    <div class="accounts-wrapper" id="accounts-area">
                         <h3>Available Accounts</h3>
                         <ul class="accounts-area">
                             <li><span class="account-info">Demo Account<button type="button" id="demo-account" class="demoBtn">Use Demo Account</button>
@@ -143,6 +140,7 @@
                     </div>
                 </div>
             </div>
+            <!-- - Middle Zone > Content -->
             <div class="middle-wrapper">
                 <div class="content-box">
                     <div class="cb-wrapper">
@@ -189,9 +187,9 @@
            <div class="footer-zone">
                 <div class="footer-box">
                     <div class="link-group">
-                        <a href="https://www.linkedin.com/in/jay-dewhurst/" target="_blank" class="li-group"><img src="./assets/images/trans-li.png">LinkedIn<span class="li-dot"></span></a>
-                        <a href="https://github.com/VelzCode" target="_blank" class="gh-group"><img src="./assets/images/github_padded.png">GitHub<span class="gh-dot"></span></a>
-                        <a href="mailto:jason.m.dewhurst@protonmail.com" alt=""  class="em-group"><img src="./assets/images/email.png"><span class="text">Email</span></a>
+                        <a href="https://www.linkedin.com/in/jay-dewhurst/" target="_blank" class="li-group"><img src="./assets/images/trans-li.png" alt="">LinkedIn<span class="li-dot"></span></a>
+                        <a href="https://github.com/VelzCode" target="_blank" class="gh-group"><img src="./assets/images/github_padded.png" alt="">GitHub<span class="gh-dot"></span></a>
+                        <a href="mailto:jason.m.dewhurst@protonmail.com" class="em-group"><img src="./assets/images/email.png" alt=""><span class="text">Email</span></a>
                     </div>
                     <p class="footer-text"><span class="copyright">&copy;2026 Athena Systems</span><span class="dot"></span><span class="author">Built by Jason Dewhurst</span></p>
                 </div>
@@ -200,7 +198,6 @@
     </main>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/clock.js"></script>
-    <script src="./assets/js/search-bar.js"></script>
     <script src="./assets/js/hamburger.js"></script>
 </body>
 </html>
