@@ -6,7 +6,7 @@ const API_BASE = "/api";
 // AUTHENTICATED FETCH REQUESTS
 // Wraps fetch so every request includes an available login token
 async function apiRequest(endpoint, options = {}) {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     const headers = {
         "Content-Type": "application/json", // Data type sent
@@ -65,8 +65,8 @@ registerForm.addEventListener("submit", async function (event) {
             }),
         });
 
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.userData));
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("user", JSON.stringify(data.userData));
 
         registerMessage.textContent = "";
         showLoggedInView(data.userData);
@@ -98,8 +98,8 @@ function showLoggedInView(user) {
 
 // SHOWING LOGGED OUT STATE
 function showLoggedOutView() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
 
     document.getElementById("logged-in-view").classList.add("hidden");
     document.getElementById("register-view").classList.remove("hidden");
@@ -119,14 +119,6 @@ const logoutBtn = document.getElementById("logout-btn");
 
 logoutBtn.addEventListener("click", function () {
     showLoggedOutView();
-
-    document.getElementById("logged-in-view").classList.add("hidden");
-    document.getElementById("register-view").classList.remove("hidden");
-    document.getElementById("login-panel").classList.remove("hidden");
-    document.getElementById("posts-container").classList.add("hidden");
-    document.getElementById("my-posts-container").classList.add("hidden");
-    document.getElementById("notes-container").classList.add("hidden");
-    document.getElementById("welcome-username").textContent = "";
 });
 
 // LOGIN
@@ -154,8 +146,8 @@ loginForm.addEventListener("submit", async function (event) {
             }),
         });
 
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.userData));
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("user", JSON.stringify(data.userData));
 
         loginMessage.textContent = "";
         showLoggedInView(data.userData);
@@ -206,7 +198,7 @@ createPostForm.addEventListener("submit", async function (event) {
                 body: JSON.stringify({
                     title: title,
                     content: content,
-                    postedBy: JSON.parse(localStorage.getItem("user")).username,
+                    postedBy: JSON.parse(sessionStorage.getItem("user")).username,
                     categoryId: categoryId,
                 }),
             });
@@ -217,7 +209,7 @@ createPostForm.addEventListener("submit", async function (event) {
                 body: JSON.stringify({
                     title: title,
                     content: content,
-                    postedBy: JSON.parse(localStorage.getItem("user")).username,
+                    postedBy: JSON.parse(sessionStorage.getItem("user")).username,
                     categoryId: categoryId,
                 }),
             });
@@ -235,7 +227,7 @@ createPostForm.addEventListener("submit", async function (event) {
 async function loadMyPosts() {
     const myPostsList = document.getElementById("my-posts-lists");
 
-    const currentUser = JSON.parse(localStorage.getItem("user"));
+    const currentUser = JSON.parse(sessionStorage.getItem("user"));
     if (!currentUser) {
         return;
     }
@@ -412,7 +404,7 @@ browseCategorySelect.addEventListener("change", function () {
 });
 
 // CHECKING LOGIN STATUS
-const savedUser = localStorage.getItem("user");
+const savedUser = sessionStorage.getItem("user");
 
 if (savedUser) {
     showLoggedInView(JSON.parse(savedUser));

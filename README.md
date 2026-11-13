@@ -1,5 +1,5 @@
-[Repository](https://github.com/VelzCode/MySQL.Version2)<br>
-[Live Page](https://week-8-sql.onrender.com)
+[Repository](https://github.com/VelzCode/Athena.version2)<br>
+[Live Page](https://athena-version2.onrender.com/)
 
 # Week.8-SQL — Athena Chronicles
 
@@ -22,11 +22,10 @@ The application is hosted on Render and builds on the earlier Athena Systems des
 - **Create posts** — Publish a title and content under a selected category.
 - **Manage your posts** — Edit or delete your own posts, with ownership checks on the server and a confirmation prompt before deletion.
 - **Public browsing** — Browse all posts or filter them by category without logging in.
-- **Note list** — Add and delete notes stored locally in the browser.
 - **Live clock** — Display the current time in the navigation area.
 - **Custom interface** — HTML and CSS panels with JavaScript updates driven by API responses.
 
-**Create a Post, My Posts and Note List are only shown after logging in.**
+**Create a Post, and My Posts are only shown after logging in.**
 
 ## Built with
 
@@ -47,7 +46,6 @@ The application is hosted on Render and builds on the earlier Athena Systems des
 4. Enter your **email address** in the login field labelled **Username**; registration uses the email as the username.
 5. Choose a category, enter a title and content, then select **Publish Post**.
 6. Use **My Posts** to edit or delete your posts. Editing loads the post into the form and changes its button to **Update Post**.
-7. Use the Note List to add or delete browser-local notes.
 8. Select **Logout** when finished.
 
 ## Data storage
@@ -56,11 +54,8 @@ The application is hosted on Render and builds on the earlier Athena Systems des
 | --- | --- |
 | Users, posts and categories | MySQL database, accessed through Sequelize. |
 | Login token and cached user details | Browser localStorage. |
-| Note list | Browser localStorage, separate from the database. |
 
 Each post belongs to a category and can belong to a user. Users and categories can each have multiple posts.
-
-Notes do not sync across devices and are not separated by account within the same browser. Logging out removes the saved token and user details but leaves the note list in browser storage.
 
 ## Local setup
 
@@ -121,25 +116,6 @@ Categories must exist before a post can be created through the form. The seed sc
 
 The `npm test` script is a placeholder; an automated test suite is not included.
 
-## Project structure
-
-```text
-Week.8-SQL/
-├── config/             # Sequelize database connection
-├── db/                 # Database creation/reset SQL
-├── models/             # User, Post and Category models and relationships
-├── public/             # HTML, CSS, browser JavaScript and image assets
-├── routes/             # User, post and category API routes
-├── seeds/              # Sample categories, posts and database seed script
-├── utils/              # Authentication middleware and token signing
-├── .env.example        # Example database settings
-├── .gitignore          # Git exclusion rules
-├── package.json        # Dependencies and application commands
-├── package-lock.json   # Locked dependency versions
-├── server.js           # Express setup and database synchronisation
-└── README.md           # Project documentation
-```
-
 ## API overview
 
 | Route | Supported actions |
@@ -158,12 +134,11 @@ Week.8-SQL/
 
 ## Current scope
 
-- The Call Us, Email Us and forgotten-password links are placeholders.
-- The Remember me checkboxes do not change login persistence.
+- The links are now completed and have been tested.
+- The forgot password integration as been dropped, and will be added in future projects.
 - Tokens expire after two hours. Cached user details can keep the logged-in interface visible after expiry; logging in again obtains a new token.
 - My Posts loads on page load and after saving or deleting a post. Returning users may need to refresh after login to display their existing posts.
 - Category-changing API routes do not currently require authentication, and there is no category-management form in the frontend.
-- The JWT signing secret is currently defined in `utils/auth.js`; the supplied code does not read a JWT secret from `.env`.
 
 ## Hosting
 
